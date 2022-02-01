@@ -1,0 +1,13 @@
+.swiper-button-prev::after, .swiper-button-next::after{
+    font-size: 1rem;
+    color: red
+};
+.swiper-pagination-bullet{
+    background-color: red;
+    transition: all 200ms ease-out;
+}
+.swiper-pagination-bullet-active{
+    width: 2rem;
+    background-color: red;
+    border-radius: 25px;
+};

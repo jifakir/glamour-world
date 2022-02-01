@@ -1,0 +1,30 @@
+{
+  "name": "evaly-clone",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.5.7",
+    "@reduxjs/toolkit": "^1.5.0",
+    "graphql": "^16.2.0",
+    "next": "^12.0.8",
+    "next-auth": "^3.13.3",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-hook-form": "^7.25.1",
+    "react-redux": "^7.2.2",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "swiper": "^6.5.0",
+    "swr": "^0.5.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.7",
+    "tailwindcss": "^2.0.3"
+  }
+}
