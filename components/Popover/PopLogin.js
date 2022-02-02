@@ -47,33 +47,33 @@ const PopLogin = ({open}) => {
 
 
     const loginForm = (
-        <form onSubmit={handleSubmit(submit)} className="container p-8">
+        <form onSubmit={handleSubmit(submit)} className="container px-8 py-5">
                 
-                {error && <p className="text-red-700 text-sm p-1">{error.message}</p>}
-                <div className="w-full py-4">
-                    <label className="text-gray-500 text-sm pb-1">Email</label>
-                    <input {...register("email",{required: true, pattern: /^\S+@\S+$/i})}   type="text" className="w-full text-gray-500 text-sm px-3 py-1 focus:outline-none rounded border border-gray-300"/>
-                    <p className="text-red-700 text-sm p-1">{errors.email && 'Please type a valid email.'}</p>
+                {error && <p className="text-sec text-sm p-1">{error.message}</p>}
+                <div className="w-full pt-1 pb-2">
+                    <label className="text-pri-dark text-sm pb-1">Email</label>
+                    <input {...register("email",{required: true, pattern: /^\S+@\S+$/i})}   type="text" className="w-full text-gray-500 text-sm px-3 py-1 mt-2 focus:outline-none rounded border border-gray-300"/>
+                    <p className="text-sec text-sm p-1">{errors.email && 'Please type a valid email.'}</p>
                 </div>
-                <div className="w-full pb-5">
-                    <label className="text-gray-500 pb-1 text-sm">Password</label>
-                    <input {...register("password",{required: true})}  type="password" className="w-full text-gray-500 text-sm px-3 py-1 focus:outline-none border rounded border-gray-300"/>
-                    <p className="text-red-700 text-sm p-1">{errors.password && 'Type valid password'}</p>
+                <div className="w-full pb-2">
+                    <label className="text-pri text-sm pb-1">Password</label>
+                    <input {...register("password",{required: true})}  type="password" className="w-full text-gray-500 text-sm px-3 py-1 mt-2 focus:outline-none border rounded border-gray-300"/>
+                    <p className="text-sec text-sm p-1">{errors.password && 'Type valid password'}</p>
                 </div>
                 <div className="w-full py-2 text-center">
-                    <button type="submit" className="w-full uppercase bg-red-600 focus:outline-none text-white rounded text-sm p-2 text-center">
+                    <button type="submit" className="w-full uppercase bg-sec bg-opacity-80 focus:outline-none text-pri-dark font-semibold rounded text-sm p-2 text-center">
                         login
                     </button>
                 </div>
                 <div className="w-full">
-                    <p className="text-center py-2">
+                    <p className="text-center text-pri pt-2 pb-1">
                         Don't have an account?
                             <Link href="/signup">
-                                <a className="text-red-500"> Sign up</a>
+                                <a className="text-sec"> Sign up</a>
                             </Link>
                     </p>
                 </div>
-                <div className="w-full text-center py-2 text-red-500">
+                <div className="w-full text-center text-sec text-sm">
                     <Link href="/forgot-password" >Forgot Password</Link>
                 </div>
             </form>

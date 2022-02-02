@@ -59,7 +59,7 @@ const Footer = ({}) => {
                </section>
             </div>
             <div className="container mx-auto">
-                <p className="w-full py-8 text-center text-sm text-gray-400">&copy; 2021 E-valy.com Limited. All rights reserved.</p>
+                <p className="w-full py-8 text-center text-sm text-gray-400">&copy; 2022 Glamour World Limited. All rights reserved.</p>
             </div>
             <style jsx>{`
                 .facebook {

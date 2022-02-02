@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Image from 'next/image';
 import { cartOpenHandler } from '../store/cartSlice';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import Cart from './Cart/Cart';
@@ -8,7 +9,7 @@ import Notification from './Popover/Notification';
 import PopLogin from './Popover/PopLogin';
 import TopSearch from './Popover/TopSearch';
 import Portal from './Portal';
-
+import logo from '../assets/img/logo.png';
 
 const Header = ({clicked}) => {
 
@@ -46,13 +47,18 @@ const Header = ({clicked}) => {
     return(
         <header  className="w-full z-10 bg-white">
             <div className="container mx-auto py-3 px-2 flex flex-row justify-between items-center relative" >
-                <div className="logo w-1/12">
+                <div className="logo">
                     <button onClick={clicked} className="menu-icon md:hidden mr-6 text-xl focus:outline-none">
                         <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
                     </button>
-                    <img className="w-full hidden md:block h-full" src="https://evaly.com.bd/static/images/logo_b&w.svg" alt="Logo"/>
+                    <Image
+                        src={logo}
+                        alt="Logo"
+                        width={50}
+                        height={50}
+                    />
                 </div>
-                <div className="h-full pl-5 md:px-5 flex-1 flex items-center">
+                <div className="h-full pl-5 md:mx-5 md:px-5 flex-1 flex items-center">
                     <div className="w-full bg-pri border-2 border-pri rounded flex relative">
                         <input onBlur={() => setInputValue(false)} onKeyPress={topSearchHandler} ref={inputRef} type="text" placeholder="Search for..." className="p-2 w-full focus:outline-none focus:bg-gray-50"/>
                         {

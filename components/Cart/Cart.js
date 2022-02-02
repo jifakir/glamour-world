@@ -15,8 +15,8 @@ const Cart = () => {
 
     return (
         <div className={`w-full md:w-2/6 min-h-screen flex flex-col justify-between absolute bg-white top-0 right-0 rounded-l-md overflow-hidden shadow transition-all duration-500 ease-in-out transform ${cartOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-            <div className="header w-full flex justify-between px-3 py-2 bg-gray-200">
-                <div onClick={() => dispatch(cartOpenHandler())} className="cursor-pointer">
+            <div className="header w-full flex justify-between px-3 py-2 bg-sec text-pri-dark font-bold">
+                <div onClick={() => dispatch(cartOpenHandler())} className="cursor-pointer hover:text-red-600">
                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" size="25" height="25" width="25" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
                 </div>
                 <h2>My Cart</h2>
@@ -27,15 +27,15 @@ const Cart = () => {
                 }
             </div>
             <div className="cart-footer p-4">
-                <div className="sub-total py-2 flex justify-between">
+                <div className="py-2 w-full flex justify-between text-sm font-medium text-pri-dark">
                     <h2>Subtotal</h2>
-                    <h2>&#2547; {subTotal}</h2>
+                    <h2 className='font-semibold'>&#2547; {subTotal}</h2>
                 </div>
-                <div className="total py-2 w-full flex justify-between">
+                <div className="py-2 w-full flex justify-between text-sm font-medium text-pri-dark">
                     <h2>Total</h2>
-                    <h2>&#2547; {total} </h2>
+                    <h2 className='font-bold'>&#2547; {total} </h2>
                 </div>
-                <button className="checkout focus:outline-none text-white py-1 my-2 rounded-md w-full bg-red-600">
+                <button className="checkout focus:outline-none text-pri-dark font-semibold py-1 my-2 rounded-md w-full bg-sec bg-opacity-80">
                     <h3 onClick={() => alert("This feature doesn't available yet.")} className="go-checkout flex justify-center items-center">
                         Proceed to checkout 
                         <span>

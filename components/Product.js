@@ -21,8 +21,8 @@ const Product = ({item}) => {
                     <p className="title text-pri-dark text-xs md:text-base">
                         {title}
                     </p>
-                    <h3 className="price line-through text-gray-300 text-sm md:text-base">&#2547;{price}</h3>
-                    <h3 className="discounted-price text-gray-500 text-sm md:text-base font-bold">&#2547;{Math.round(price - price * (discount / 100))}</h3>
+                    <h3 className="price line-through text-sec text-opacity-30 text-sm md:text-base">&#2547;{price}</h3>
+                    <h3 className="discounted-price text-pri-dark text-sm md:text-base font-semibold">&#2547;{Math.round(price - price * (discount / 100))}</h3>
                 </div>
             </div>
         </div>
