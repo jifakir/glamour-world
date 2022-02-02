@@ -9,9 +9,10 @@ module.exports = {
         sans: ['Recursive', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        'pri': '#08081c',
+        'pri': '#040730',
+        // 'pri': '#08081c',
         'pri-dark': '#140a4d',
-        'sec': '#ef9c00',
+        'sec': '#f07218 ',
       },
     },
   },

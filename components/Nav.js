@@ -18,8 +18,8 @@ const Nav = ({clicked}) => {
                         </span>
                     </div>
                 </div>
-                <div className="nav-items text-sm">
-                    <ul className="flex justify-between items-center font-bold">
+                <div className="nav-items text-sm text-white">
+                    <ul className="flex justify-between items-center font-base">
                         <li className="p-2">
                             <Link href="/products" >
                                 All Shops
