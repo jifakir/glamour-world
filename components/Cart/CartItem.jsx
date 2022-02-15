@@ -10,7 +10,7 @@ const CartItem = ({item}) => {
     return (
         <div className="w-full border-b border-gray-200 flex px-2 py-5">
             <div className="img-wrapper w-32 h-auto">
-                <img src="https://s3-ap-southeast-1.amazonaws.com/media.evaly.com.bd/media/images/44a0b142d0b2-lw-01-01.png" alt="Product" className="w-full"/>
+                <img src="https://s3-ap-southeast-1.amazonaws.com/media.evaly.com.bd/media/images/44a0b142d0b2-lw-01-01.png" alt="Product" className="w-full h-full"/>
             </div>
             <div className="w-full ml-2 text-sm text-pri-dark">
                 <h2>Pack 30 Leather Long Wallet - Brown - (SB-21)</h2>

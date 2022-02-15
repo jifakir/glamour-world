@@ -1,3 +1,4 @@
+import Layout from '../components/Layouts/Layout';
 import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { gql, useMutation, useQuery } from '@apollo/client';
@@ -35,7 +36,6 @@ const Signup = () => {
         console.log("Submitted data", data);
         const submitted = await addUser({ variables: {name, email, password} });
 
-
     };
 
     if(success){
@@ -48,26 +48,26 @@ const Signup = () => {
                 {error && <p className="text-sec text-sm p-1">{error.message}</p>}
                 <div className="w-full py-2">
                         <label className="text-pri-dark text-sm pb-5">Name</label>
-                        <input {...register("name",{required: true})}   type="text" className="w-full text-pri-dark text-sm px-3 py-1 mt-2 focus:outline-none rounded border border-gray-300"/>
+                        <input {...register("name",{required: true})}   type="text" className="w-full text-pri-dark text-sm px-3 py-2 mt-2 focus:outline-none rounded border border-gray-300"/>
                         <p className="text-sec text-sm p-1">{errors.name ? 'Name is required': ''}</p>
                 </div>
                 <div className="w-full pb-2">
                     <label className="text-pri-dark text-sm">Email</label>
-                    <input {...register("email",{required: true, pattern: /^\S+@\S+$/i })}   type="email" className="w-full text-gray-500 text-sm px-3 py-1 mt-2 focus:outline-none rounded border border-gray-300"/>
+                    <input {...register("email",{required: true, pattern: /^\S+@\S+$/i })}   type="email" className="w-full text-gray-500 text-sm px-3 py-2 mt-2 focus:outline-none rounded border border-gray-300"/>
                     <p className="text-sec text-sm p-1">{errors.email ? 'Please input a valid email': ''}</p>
                 </div>
                 <div className="w-full pb-2">
                     <label className="text-pri-dark pb-1 text-sm">Password</label>
-                    <input {...register("password",{required: true, minLength: 6, maxLength: 20})}  type="password" className="w-full text-gray-500 text-sm px-3 py-1 mt-2 focus:outline-none border rounded border-gray-300"/>
+                    <input {...register("password",{required: true, minLength: 6, maxLength: 20})}  type="password" className="w-full text-gray-500 text-sm px-3 py-2 mt-2 focus:outline-none border rounded border-gray-300"/>
                     <p className="text-sec text-sm p-1">{errors.password ? 'Min 6 char and max 20 char': ''}</p>
                 </div>
                 <div className="w-full pb-2">
                     <label className="text-pri-dark pb-1 text-sm">Password</label>
-                    <input {...register("cnfmpwd",{required: true})}  type="password" className="w-full text-gray-500 text-sm px-3 py-1 mt-2 focus:outline-none border rounded border-gray-300"/>
+                    <input {...register("cnfmpwd",{required: true})}  type="password" className="w-full text-gray-500 text-sm px-3 py-2 mt-2 focus:outline-none border rounded border-gray-300"/>
                     <p className="text-sec text-sm p-1">{(watch('cnfmpw') && watch('cnfmpwd') !== watch('password')) ? 'Password does not match' : ''}</p>
                 </div>
-                <div className="w-full py-2 text-center">
-                    <button type="submit" className="w-full uppercase bg-pri focus:outline-none text-sec rounded text-sm font-medium p-2 text-center">
+                <div className="w-full py-5 text-center">
+                    <button type="submit" className="w-full uppercase bg-pri hover:bg-pri-dark focus:outline-none text-sec rounded text-sm font-medium p-2 text-center">
                         sign up
                     </button>
                 </div>
@@ -82,7 +82,16 @@ const Signup = () => {
             </form>
         </div>
     )
-};
+}
+
+Signup.getLayout = function getLayout(page){
+
+    return (
+      <Layout>
+        {page}
+      </Layout>
+      )
+  }
 
 
 export default Signup;

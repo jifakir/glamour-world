@@ -52,28 +52,28 @@ const PopLogin = ({open}) => {
                 {error && <p className="text-sec text-sm p-1">{error.message}</p>}
                 <div className="w-full pt-1 pb-2">
                     <label className="text-pri-dark text-sm pb-1">Email</label>
-                    <input {...register("email",{required: true, pattern: /^\S+@\S+$/i})}   type="text" className="w-full text-gray-500 text-sm px-3 py-1 mt-2 focus:outline-none rounded border border-gray-300"/>
+                    <input {...register("email",{required: true, pattern: /^\S+@\S+$/i})}   type="text" className="w-full text-gray-500 text-sm px-3 py-2 mt-2 focus:outline-none rounded border border-gray-300"/>
                     <p className="text-sec text-sm p-1">{errors.email && 'Please type a valid email.'}</p>
                 </div>
                 <div className="w-full pb-2">
                     <label className="text-pri text-sm pb-1">Password</label>
-                    <input {...register("password",{required: true})}  type="password" className="w-full text-gray-500 text-sm px-3 py-1 mt-2 focus:outline-none border rounded border-gray-300"/>
+                    <input {...register("password",{required: true})}  type="password" className="w-full text-gray-500 text-sm px-3 py-2 mt-2 focus:outline-none border rounded border-gray-300"/>
                     <p className="text-sec text-sm p-1">{errors.password && 'Type valid password'}</p>
                 </div>
-                <div className="w-full py-2 text-center">
-                    <button type="submit" className="w-full uppercase bg-sec bg-opacity-80 focus:outline-none text-pri-dark font-semibold rounded text-sm p-2 text-center">
+                <div className="w-full py-3 text-center">
+                    <button type="submit" className="w-full uppercase bg-pri text-white focus:outline-none font-base rounded text-sm p-2 text-center">
                         login
                     </button>
                 </div>
                 <div className="w-full">
-                    <p className="text-center text-pri pt-2 pb-1">
-                        Don't have an account?
+                    <p className="text-center text-sm text-pri pt-2 pb-1">
+                        Don't you have an account?
                             <Link href="/signup">
-                                <a className="text-sec"> Sign up</a>
+                                <a className="text-sec text-xs"> Sign up</a>
                             </Link>
                     </p>
                 </div>
-                <div className="w-full text-center text-sec text-sm">
+                <div className="w-full text-center text-sec text-xs">
                     <Link href="/forgot-password" >Forgot Password</Link>
                 </div>
             </form>
@@ -90,7 +90,7 @@ const PopLogin = ({open}) => {
                 user ? 
                 <>
                     <div className="w-full min-h-full flex justify-center items-center">
-                        <button onClick={() => signOut()} className="py-5 px-10 bg-red-500 my-10 focus:outline-none rounded-lg text-white">Sign Out</button>
+                        <button onClick={() => signOut()} className="py-5 px-10 bg-sec my-10 focus:outline-none rounded-lg text-white">Sign Out</button>
                     </div>
                 </>:
                 loginForm

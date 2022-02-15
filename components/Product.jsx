@@ -2,10 +2,9 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 
-const Product = ({item}) => {
+const Product = ({id, title, imgUrl, price, discount}) => {
 
     const location = useRouter();
-    const { id, title, imgUrl, price, discount} = item;
 
     return (
         <div onClick={() => location.push(`/products/${id}`)} className="group w-full rounded-md bg-white cursor-pointer shadow-md">
@@ -21,8 +20,10 @@ const Product = ({item}) => {
                     <p className="title text-pri-dark text-xs md:text-base">
                         {title}
                     </p>
-                    <h3 className="price line-through text-sec text-opacity-30 text-sm md:text-base">&#2547;{price}</h3>
-                    <h3 className="discounted-price text-pri-dark text-sm md:text-base font-semibold">&#2547;{Math.round(price - price * (discount / 100))}</h3>
+                    <div className="w-full flex justify-between">
+                        <h3 className="price line-through text-sec opacity-50 text-sm md:text-base">&#2547; {price}</h3>
+                        <h3 className="discounted-price text-pri-dark text-sm md:text-base font-semibold">&#2547; {Math.round(price - price * (discount / 100))}</h3>
+                    </div>
                 </div>
             </div>
         </div>

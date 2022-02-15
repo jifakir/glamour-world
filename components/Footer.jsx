@@ -7,9 +7,9 @@ const Footer = ({}) => {
 
     return (
         <footer className="w-full hidden md:block bg-pri">
-            <div className="container border-b border-gray-800 mx-auto py-16 px-2 text-center flex justify-evenly text-gray-400">
+            <div className="container border-gray-800 mx-auto py-16 px-2 text-center flex justify-evenly text-gray-400">
                <section className="section text-sm">
-                   <h2 className="font-bold mb-4 text-lg text-left text-white">Download</h2>
+                   <h2 className="font-medium mb-4 text-lg text-left text-white">Download</h2>
                    <ul className="w-full">
                        <li className="w-full mb-4">
                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/120px-Google_Play_Store_badge_EN.svg.png" alt="Google Play Badge"/>
@@ -22,16 +22,17 @@ const Footer = ({}) => {
                    </ul>
                </section>
                <section className="section text-sm text-left">
-                   <h2 className="font-bold mb-4 text-lg text-white">Menu</h2>
-                   <ul className="w-full">
+                   <h2 className="font-medium mb-4 text-lg text-white">Menu</h2>
+                   <ul className="w-full text-light">
                        {
-                           ['Privacy Policy', 'Cookie Policy', 'Purchasing Policy', 'Terms & Conditions', 'Career'].map((item, idx) => <li key={idx} className="w-full pb-2"><Link href="/privacy" >{item}</Link></li>)
+                           ['Privacy Policy', 'Cookie Policy', 'Purchasing Policy', 'Terms & Conditions', 'Career']
+                           .map((item, idx) => <li key={idx} className="w-full pb-2 hover:opacity-50"><Link href="/privacy" >{item}</Link></li>)
                        }
                        
                    </ul>
                </section>
-               <section className="section mb-8 text-left text-sm">
-                   <h2 className="font-bold text-lg mb-4 text-left text-white">Contact Us</h2>
+               <section className="section mb-8 text-left text-sm text-light">
+                   <h2 className="font-medium text-lg mb-4 text-left text-white">Contact Us</h2>
                    <p className="mb-2 ">
                     House #8, Road # 14,<br/>
                     Dhanmondi, Dhaka-1209.
@@ -44,7 +45,7 @@ const Footer = ({}) => {
                    </p>
                </section>
                <section className="section mb-8 text-left">
-                   <h2 className="font-bold text-left text-lg mb-4 text-white">Get in Touch</h2>
+                   <h2 className="font-medium text-left text-lg mb-4 text-white">Get in Touch</h2>
                    <ul className="flex w-full justify-between">
                         <li className="facebook w-10 h-10 rounded px-2 py-3 cursor-pointer flex justify-center items-center mr-2">
                            <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-auto"><path d="M3.02293 16L3 9H0V6H3V4C3 1.3008 4.67151 0 7.07938 0C8.23277 0 9.22406 0.08587 9.51294 0.12425V2.94507L7.84296 2.94583C6.53343 2.94583 6.27987 3.5681 6.27987 4.48124V6H10L9 9H6.27986V16H3.02293Z" fill="#A7ABBD"></path></svg>
@@ -58,8 +59,8 @@ const Footer = ({}) => {
                    </ul>
                </section>
             </div>
-            <div className="container mx-auto">
-                <p className="w-full py-8 text-center text-sm text-gray-400">&copy; 2022 Glamour World Limited. All rights reserved.</p>
+            <div className="w-full bg-dark">
+                <p className="w-full py-5 text-center text-sm text-gray-700">&copy; 2022 Glamour World Limited. All rights reserved.</p>
             </div>
             <style jsx>{`
                 .facebook {

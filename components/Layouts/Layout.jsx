@@ -1,10 +1,10 @@
 import { useState } from "react";
-import BottomNav from "./BottomNav";
-import Footer from "./Footer";
-import Header from "./Header";
-import Nav from "./Nav";
-import Portal from './Portal';
-import SideDrawer from "./SideDrawer/SideDrawer";
+import BottomNav from "../BottomNav";
+import Footer from "../Footer";
+import Header from "../Header";
+import Nav from "../Nav";
+import Portal from '../Portal';
+import SideDrawer from "../SideDrawer/SideDrawer";
 
 
 

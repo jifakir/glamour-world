@@ -1,4 +1,4 @@
-
+import Layout from '../components/Layouts/Layout';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
@@ -12,16 +12,16 @@ const Login = () => {
             <form className="container p-8">
                 <div className="w-full py-2">
                     <label htmlFor="phone-num" className="text-pri-dark text-sm pb-1">Phone Number</label>
-                    <input {...register("email", {required: true, pattern: /^\S+@\S+$/i})}  type="text" className="w-full text-gray-500 text-sm px-3 py-1 mt-2 focus:outline-none rounded border border-gray-300"/>
+                    <input {...register("email", {required: true, pattern: /^\S+@\S+$/i})}  type="text" className="w-full text-gray-500 text-sm px-3 py-2 mt-2 focus:outline-none rounded border border-gray-300"/>
                     <p className="text-sec text-sm p-1">{errors.email && 'A valid email required.'}</p>
                 </div>
                 <div className="w-full pb-2">
                     <label htmlFor="password" className="text-pri-dark pb-1 text-sm">Password</label>
-                    <input {...register("password", {required: true})} type="password" className="w-full text-gray-500 text-sm px-3 py-1 mt-2 focus:outline-none border rounded border-gray-300"/>
+                    <input {...register("password", {required: true})} type="password" className="w-full text-gray-500 text-sm px-3 py-2 mt-2 focus:outline-none border rounded border-gray-300"/>
                     <p className="text-sec text-sm p-1">{errors.password && 'Password required'}</p>
                 </div>
-                <div className="w-full py-2 text-center">
-                    <button type="submit" className="w-full uppercase bg-pri focus:outline-none text-sec font-medium rounded text-sm p-2 text-center">
+                <div className="w-full py-5 text-center">
+                    <button type="submit" className="w-full uppercase bg-pri hover:bg-pri-dark focus:outline-none text-sec font-medium rounded text-sm p-2 text-center">
                         login
                     </button>
                 </div>
@@ -41,5 +41,13 @@ const Login = () => {
     )
 };
 
+Login.getLayout = function getLayout(page){
+
+    return (
+      <Layout>
+        {page}
+      </Layout>
+      )
+  }
 
 export default Login;

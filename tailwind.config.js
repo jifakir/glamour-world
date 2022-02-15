@@ -1,27 +1,37 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Recursive', ...defaultTheme.fontFamily.sans],
+        sans: ['Poppins', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         'pri': '#040730',
         // 'pri': '#08081c',
         'pri-dark': '#140a4d',
+        'dark': '#040410',
         'sec': '#f07218 ',
+        'light': '#535361'
       },
     },
   },
-  variants: {
-    extend: {
-      borderWidth: ['hover', 'focus'],
-      transform: ['group-hover'],
-      scale: ['group-hover'],
-    },
-  },
-  plugins: [],
+  // variants: {
+  //   scrollbar: ['rounded'],
+  //   extend: {
+  //     borderWidth: ['hover', 'focus'],
+  //     transform: ['group-hover', 'hover', 'focus'],
+  //     rotate: ['group-hover'],
+  //     scale: ['group-hover'],
+  //     display: ['group-hover'],
+  //     width: ['group-hover'],
+  //   },
+  // },
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }

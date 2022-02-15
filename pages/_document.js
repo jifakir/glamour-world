@@ -5,7 +5,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head />
-        <body>
+        <body className='scrollbar-thin scrollbar-track-pri scrollbar-thumb-sec'>
           <Main />
           <div id="modal" />
           <div id="tooltip" />

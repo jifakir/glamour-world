@@ -1,3 +1,4 @@
+import Layout from '../../components/Layouts/Layout';
 import { useRouter } from 'next/router';
 import { shop } from '../../products';
 import { useDispatch, useSelector } from 'react-redux';
@@ -5,6 +6,7 @@ import { gql, useQuery } from '@apollo/client';
 import { addToCart } from '../../store/cartSlice';
 import useSWR from 'swr';
 import Spinner from '../../components/Spinner';
+import ReactImageMagnify from 'react-image-magnify';
 
 
 const SINGLE_PRODUCT = gql`
@@ -19,16 +21,27 @@ const SINGLE_PRODUCT = gql`
         }
     }
 `;
-const fetcher = (...args) => fetch(...args).then(res => res.json());
+
 
 const ProductDetails = () => {
-
+    // Redux Actios
     const dispatch = useDispatch();
+
+    // Redux State
+    const cart = useSelector(state => state.carts);
+
+    // Accessing route query
     const router = useRouter();
     const {id} = router.query;
     const {data, loading, error } = useQuery(SINGLE_PRODUCT,{variables: {id}});
 
-    console.log(data);
+    // Checking is product on the cart or not
+
+    console.log("Cart: ", cart);
+    console.log("Product Id", id);
+
+    const isProductOnCart = cart.findIndex(pd => pd.id === id);
+    console.log("Is product exist: ", isProductOnCart);
     if(loading){
         return <Spinner />
     }
@@ -43,7 +56,19 @@ const ProductDetails = () => {
             <div className="shadow-lg rounded-lg">
                 <div className="bg-white text-gray-700 lg:flex flex-row">
                     <div className="w-full image-wrapper p-4 lg:w-2/5">
-                        <img src={product.imgUrl} alt="Product"/>
+                        {/* <img src={product.imgUrl} alt="Product"/> */}
+                        <ReactImageMagnify {...{
+                            smallImage: {
+                                alt: product.title,
+                                isFluidWidth: true,
+                                src: product.imgUrl
+                            },
+                            largeImage: {
+                                src: product.imgUrl,
+                                width: 600,
+                                height: 500
+                            }
+                        }} />
                     </div>
                     <div className="w-full p-4 description lg:w-2/5">
                         <div className="py-3 text-pri-dark font-bold text-lg">
@@ -77,21 +102,36 @@ const ProductDetails = () => {
                                 </div>
                             </div>
                         </div> */}
-                        <div onClick={() => dispatch(addToCart(product))} className="mt-6 mb-2">
-                            <button className="bg-sec text-pri-dark py-2 w-full font-bold flex items-center justify-center rounded overflow-hidden whitespace-no-wrap focus:outline-none active:bg-opacity-80">
-                                <span className="mr-3">
-                                    <svg width="22" height="19" viewBox="0 0 22 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.63 13.45H6.675l.7-1.427 11.644-.02a.814.814 0 00.802-.671l1.612-9.026a.814.814 0 00-.799-.958l-14.812-.05-.127-.595a.832.832 0 00-.811-.656H1.262a.827.827 0 000 1.655h2.95l.554 2.63 1.362 6.592-1.754 2.862a.82.82 0 00-.07.862c.14.28.424.455.738.455h1.472a2.407 2.407 0 001.922 3.85 2.407 2.407 0 001.922-3.85h3.776a2.407 2.407 0 001.922 3.85 2.407 2.407 0 001.921-3.85h2.656c.455 0 .827-.37.827-.827a.83.83 0 00-.83-.825zM6.166 2.93l13.495.044-1.322 7.402-10.6.019L6.165 2.93zm2.271 14.36a.742.742 0 01-.74-.74c0-.409.332-.741.74-.741a.742.742 0 01.524 1.264.74.74 0 01-.524.217zm7.62 0a.742.742 0 01-.741-.74c0-.409.333-.741.74-.741a.742.742 0 01.524 1.264.74.74 0 01-.523.217z" fill="currentColor"></path></svg>
-                                </span>
-                                Add to cart the product
-                            </button>
-                        </div>
+                        {
+                            isProductOnCart < 0 ?
+                            (
+                            <div onClick={() => dispatch(addToCart(product))} className="mt-6 mb-2">
+                                <button className="bg-pri text-white py-3 w-full text-sm font-medium flex items-center justify-center rounded overflow-hidden whitespace-no-wrap focus:outline-none focus:bg-opacity-80">
+                                    <span className="mr-3">
+                                        <svg width="22" height="19" viewBox="0 0 22 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.63 13.45H6.675l.7-1.427 11.644-.02a.814.814 0 00.802-.671l1.612-9.026a.814.814 0 00-.799-.958l-14.812-.05-.127-.595a.832.832 0 00-.811-.656H1.262a.827.827 0 000 1.655h2.95l.554 2.63 1.362 6.592-1.754 2.862a.82.82 0 00-.07.862c.14.28.424.455.738.455h1.472a2.407 2.407 0 001.922 3.85 2.407 2.407 0 001.922-3.85h3.776a2.407 2.407 0 001.922 3.85 2.407 2.407 0 001.921-3.85h2.656c.455 0 .827-.37.827-.827a.83.83 0 00-.83-.825zM6.166 2.93l13.495.044-1.322 7.402-10.6.019L6.165 2.93zm2.271 14.36a.742.742 0 01-.74-.74c0-.409.332-.741.74-.741a.742.742 0 01.524 1.264.74.74 0 01-.524.217zm7.62 0a.742.742 0 01-.741-.74c0-.409.333-.741.74-.741a.742.742 0 01.524 1.264.74.74 0 01-.523.217z" fill="currentColor"></path></svg>
+                                    </span>
+                                    Add the product to cart
+                                </button>
+                            </div>
+                            ):
+                            (
+                            <div  className="mt-6 mb-2">
+                                <button className="bg-pri bg-opacity-50 cursor-not-allowed text-white py-3 w-full text-sm font-medium flex items-center justify-center rounded overflow-hidden whitespace-no-wrap focus:outline-none">
+                                    <span className="mr-3">
+                                        <svg width="22" height="19" viewBox="0 0 22 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.63 13.45H6.675l.7-1.427 11.644-.02a.814.814 0 00.802-.671l1.612-9.026a.814.814 0 00-.799-.958l-14.812-.05-.127-.595a.832.832 0 00-.811-.656H1.262a.827.827 0 000 1.655h2.95l.554 2.63 1.362 6.592-1.754 2.862a.82.82 0 00-.07.862c.14.28.424.455.738.455h1.472a2.407 2.407 0 001.922 3.85 2.407 2.407 0 001.922-3.85h3.776a2.407 2.407 0 001.922 3.85 2.407 2.407 0 001.921-3.85h2.656c.455 0 .827-.37.827-.827a.83.83 0 00-.83-.825zM6.166 2.93l13.495.044-1.322 7.402-10.6.019L6.165 2.93zm2.271 14.36a.742.742 0 01-.74-.74c0-.409.332-.741.74-.741a.742.742 0 01.524 1.264.74.74 0 01-.524.217zm7.62 0a.742.742 0 01-.741-.74c0-.409.333-.741.74-.741a.742.742 0 01.524 1.264.74.74 0 01-.523.217z" fill="currentColor"></path></svg>
+                                    </span>
+                                    Product added in cart
+                                </button>
+                            </div>
+                            )
+                        }
                         <div className="mt-4">
                             <hr/>
                             <div className="py-4">
                                 <p className="text-sm font-semibold text-gray-800">
                                     Have questions about this product (SKU:0x73c0f)
                                 </p>
-                                <h3 className="flex items-center mt-2 font-bold text-red-600">
+                                <h3 className="flex items-center mt-2 font-bold text-sec">
                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="mr-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg>
                                     09638111666
                                 </h3>
@@ -99,10 +139,10 @@ const ProductDetails = () => {
                             <hr/>
                         </div>
                     </div>
-                    <div className="w-full lg:w-1/5 bg-gray-100">
+                    <div className="w-full lg:w-1/5 bg-pri text-white">
                         <div className="p-4">
                             <div className="mt-6 mb-4 border-b">
-                                <h4 className="mb-4 text-gray-600">
+                                <h4 className="mb-4 text-white">
                                     Warranty
                                 </h4>
                                 <div className="flex items-center mb-2">
@@ -120,7 +160,16 @@ const ProductDetails = () => {
             </div>
         </div>
     )
-};
+}
+
+ProductDetails.getLayout = function getLayout(page){
+
+    return (
+      <Layout>
+        {page}
+      </Layout>
+      )
+  }
 
 export default ProductDetails;
 

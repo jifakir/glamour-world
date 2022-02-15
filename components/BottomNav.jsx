@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
+import Image from 'next/image';
+import Link from 'next/link';
 import Notification from './Popover/Notification';
 import { cartOpenHandler } from '../store/cartSlice';
+
+import logo from '../assets/img/logo.png';
 
 
 const BottomNav = () => {
@@ -10,7 +14,7 @@ const BottomNav = () => {
 
     return (
         <div className="w-full md:hidden">
-            <div className="w-full text-sm shadow rounded-t-lg  fixed bottom-0 bg-white py-3 px-5 text-gray-700 flex justify-between items-center icons">
+            <div className="z-30 w-full text-sm shadow rounded-t-lg  fixed bottom-0 bg-white py-3 px-5 text-gray-700 flex justify-between items-center icons">
                 <div onClick={() => dispatch(cartOpenHandler())} className="p-2 flex flex-col items-center cursor-pointer ">
                     <div className="bg-gray-50 rounded-full p-2 border border-gray-100 relative">
                         <span className="w-5 h-5 bg-gradient-to-r p-1 from-red-500 to-red-900 text-white absolute -top-3 text-xs rounded-full flex justify-center items-center  right-0">{quantity}</span>
@@ -24,8 +28,13 @@ const BottomNav = () => {
                     </div>
                     <h4>Message</h4>
                 </div>
-                <div className="logo-wrapper overflow-hidden w-10 h-10 rounded-full">
-                    <img src="https://evaly.com.bd/static/images/icon_b&w.svg" alt="Evaly Logo"/>
+                <div className="overflow-hidden w-10 h-10 rounded-full">
+                            <Image
+                                src={logo}
+                                alt="Logo"
+                                width={50}
+                                height={50}
+                            />
                 </div>
                 <div className="p-2 flex flex-col items-center cursor-pointer ">
                     <Notification />

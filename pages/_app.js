@@ -1,4 +1,4 @@
-import Layout from '../components/Layout'
+import Layout from '../components/Layouts/Layout';
 import { Provider } from 'react-redux';
 import {store} from '../store/store';
 import { persistor } from '../store/store';
@@ -12,14 +12,15 @@ import 'swiper/swiper-bundle.min.css';
 import '../styles/customSwiper.css';
 
 function MyApp({ Component, pageProps }) {
+
+  const getLayout = Component.getLayout || (page => page);
+
   return (
     <ApolloProvider client={client} >
       <Provider store={store} >
         <AuthProvider session={pageProps.session} >
           <PersistGate persistor={persistor}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+              {getLayout(<Component {...pageProps} />)}
           </PersistGate>
         </AuthProvider>
       </Provider>
